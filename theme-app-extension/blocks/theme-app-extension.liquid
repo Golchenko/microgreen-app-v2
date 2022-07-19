@@ -1,0 +1,150 @@
+{% unless product.selected_or_first_available_variant.available == false %} 
+{% if product.tags contains block.settings.tag or block.settings.tag == "" %}
+<script>
+  let limit = `{{block.settings.limit}}`;
+</script>
+
+{{ "theme-app-extension.css" | asset_url | stylesheet_tag }}
+
+<script src="{{ 'theme-app-extension.js' | asset_url }}" defer></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+<div class="app-extension page-width">
+  <div class="app-extension__image">
+    <img
+      src="{{ 'Envelope.png' | asset_url }}"
+      width="{{ image.width }}"
+      height="{{ image.height }}"
+      alt="preview"
+    />
+  </div>
+  <div class="app-extension__options">
+    <div class="app-extension__title">
+      <h2>{{ block.settings.title }}</h2>
+    </div>
+    <div class="app-extension__form properties">
+      {%- form 'product', product, id: product_form_id, class: 'form',
+      novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+      <p class="properties__message">
+        <label for="message">Message:</label><br />
+        <textarea
+          id="message"
+          name="properties[Gift Message]"
+          placeholder="Your message"
+          rows="8"
+        ></textarea>
+      </p>
+      <p class="properties__shipping">
+        <label>Shipping Method:</label><br />
+        <input
+          id="email"
+          type="radio"
+          name="properties[Gift Shipping Method]"
+          value="Send via email"
+          checked
+        />
+        <label for="email"> Send via email </label>
+        <input
+          id="postcard"
+          type="radio"
+          name="properties[Gift Shipping Method]"
+          value="Send as a postcard"
+        />
+        <label for="postcard"> Send as a postcard </label>
+      </p>
+      <p class="properties__mail">
+        <input
+          class="properties__email"
+          id="emailInput"
+          type="email"
+          name="properties[Gift Email]"
+          placeholder="Email"
+          required="required"
+        />
+      </p>
+      <p class="properties__time">
+        <label>Shipping Time:</label><br />
+
+        <input
+          id="ASAP"
+          type="radio"
+          name="properties[Gift Shipping Time]"
+          value="ASAP"
+          checked
+        />
+        <label for="ASAP"> ASAP </label>
+        <input
+          id="date"
+          type="radio"
+          name="properties[Gift Shipping Time]"
+          value="Pick shipping date"
+        />
+        <label for="date"> Pick shipping date </label>
+      </p>
+      <p>
+        <input
+          style="display: none"
+          id="calendar"
+          type="date"
+          name="properties[Gift Shipping Date]"
+        />
+      </p>
+
+      <input
+        type="hidden"
+        name="id"
+        data-productid="{{ product.id }}"
+        class="product-select"
+        value="{{ product.variants[0].id }}"
+        data-variant-title="{{ product.variants[0].title }}"
+      />
+
+      <input
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
+        disabled
+      />
+      <div class="product-form__buttons">
+        <button
+          type="submit"
+          name="add"
+          class="product-form__submit button app-extension__submit {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+          disabled
+        >
+          <span>
+            {%- if product.selected_or_first_available_variant.available -%}
+            Submit and add to cart {%- else -%}
+            {{ "products.product.sold_out" | t }}
+            {%- endif -%}
+          </span>
+          <div class="loading-overlay__spinner hidden">
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              role="presentation"
+              class="spinner"
+              viewBox="0 0 66 66"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="path"
+                fill="none"
+                stroke-width="6"
+                cx="33"
+                cy="33"
+                r="30"
+              ></circle>
+            </svg>
+          </div>
+        </button>
+      </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+{% endif %} {%- endunless -%} {% schema %} { "name": "theme app extension",
+"target": "section", "settings": [ { "label": "Section title", "id": "title",
+"type": "text", "default": "Send gift" }, { "label": "Message limit", "id":
+"limit", "type": "number", "default": 300 }, { "label": "Product tag", "id":
+"tag", "type": "text" } ] } {% endschema %}

@@ -1,0 +1,24 @@
+.textfield {
+    display: flex;    
+}
+
+.app-wrapper input,
+.app-wrapper textarea {
+    background-color: var(--p-surface);
+    border: 0.0625rem solid var(--p-border-subdued);
+    border-top-color: var(--p-border-shadow);
+    border-radius: var(--p-border-radius-1);
+}
+
+.app-wrapper .Polaris-Card__Footer {
+    justify-content: flex-start;
+    padding: 30px;
+}
+
+.app-wrapper .js-input .Polaris-Button {
+    margin-top: 20px;
+}
+
+.app-wrapper .js-input .Polaris-Card__Section {
+    padding: 25px 0;
+}

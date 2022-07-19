@@ -1,0 +1,152 @@
+.app-extension {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  margin: 40px auto;
+}
+
+.app-extension__options {
+  width: 50%;
+  padding-left: 20px;
+}
+
+.app-extension__title h2 {
+  margin-top: 0;
+}
+
+.app-extension__image {
+  padding-top: 20px;
+  width: 50%;
+}
+
+.app-extension__form label {
+  font-size: 2.1rem;
+}
+
+.app-extension__form textarea {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 13px 16px;
+}
+
+.app-extension__form p {
+  margin: 20px 0;
+}
+
+.app-extension__form p input[type="radio"] + label {
+  padding-right: 25px;
+  font-size: 1.6rem;
+}
+
+.app-extension__form input[type="radio"] {
+  position: relative;
+}
+
+.app-extension__form input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.app-extension__form input[type="radio"] + label {
+  cursor: pointer;
+}
+
+.app-extension__form input[type="radio"] + label::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.1em;
+  top: 0.2em;
+  position: relative;
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+
+.app-extension__form input[type="radio"]:checked + label::before {
+  background-color: #88b338;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+
+.app-extension__form .properties__shipping {
+  margin-bottom: 10px;
+}
+
+.app-extension__form .properties__mail {
+  margin-top: 0;
+}
+
+.app-extension__form input[type="email"] {
+  padding: 13px 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  width: 50%;
+}
+
+.app-extension__form input[type="date"] {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 13px 16px;
+}
+
+@media screen and (max-width: 960px) {
+  .app-extension__image {
+    width: 40%;
+  }
+
+  .app-extension__image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .app-extension__options {
+    width: 60%;
+  }
+
+  .app-extension {
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .app-extension__options {
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .app-extension {
+    flex-direction: column;
+  }
+
+  .app-extension__image {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .app-extension__options {
+    width: 100%;
+  }
+
+  .app-extension__form input[type="email"] {
+    width: 90%;
+  }
+
+  .app-extension__form label {
+    font-size: 1.6rem;
+  }
+
+  .app-extension__form p input[type="radio"] + label {
+    padding-right: 10px;
+    font-size: 1.2rem;
+  }
+}
+
+.swal2-title {
+  font-size: 2rem !important;
+}
